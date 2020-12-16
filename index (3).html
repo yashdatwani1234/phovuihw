@@ -1,0 +1,348 @@
+<?php
+session_start();
+?>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>information</title>
+
+<style>
+
+/*     Creating a form without table    */
+
+
+*
+{ 
+margin:0;
+padding:0;
+}
+
+body{ font:100% normal Arial, Helvetica, sans-serif; background:#5B5BFF;}
+
+form,input,select,textarea{margin:0; padding:0; color:black;}
+
+
+
+div.box{
+
+margin:0 auto;
+
+width:500px;
+
+background:#8080FF;
+
+position:relative;
+
+top:50px;
+
+border:1px solid #262626;
+
+}
+
+
+
+div.box h1{ 
+
+color:#FFF5CC;
+
+font-size:18px;
+
+text-transform:uppercase;
+
+padding:5px 0 5px 5px;
+
+border-bottom:1px solid #161712;
+
+border-top:1px solid #161712; 
+
+}
+
+
+
+div.box label{
+
+width:100%;
+
+display: block;
+
+background:#8080FF;
+
+border-top:1px solid #262626;
+
+border-bottom:1px solid #161712;
+
+padding:10px 0 10px 0;
+
+}
+
+div.box label span{
+
+display: block;
+
+color:white;
+
+font-size:12px;
+
+float:left;
+
+width:100px;
+
+text-align:right;
+
+padding:5px 20px 0 0;
+
+}
+
+
+div.box span{
+
+display: block;
+
+color:white;
+
+font-size:12px;
+
+float:left;
+
+width:100px;
+
+text-align:right;
+
+padding:5px 20px 0 0;
+
+}
+
+
+
+
+div.box .input_text{
+
+padding:10px 10px;
+
+width:200px;
+
+background:#AEAEFF;
+
+border-bottom: 1px double #171717;
+
+border-top: 1px double #171717;
+
+border-left:1px double #333;
+
+border-right:1px double #333;
+
+}
+
+
+
+div.box .message{
+
+padding:7px 7px;
+
+width:350px;
+
+background:#AEAEFF;
+
+border-bottom: 1px double #171717;
+
+border-top: 1px double #171717;
+
+border-left:1px double #333;
+
+border-right:1px double #333;
+
+overflow:hidden;
+
+height:150px;
+
+}
+
+
+
+div.box .button
+
+{
+
+margin:0 0 10px 0;
+
+padding:4px 7px;
+
+background:#AEAEFF;
+
+border:0px;
+
+position: relative;
+
+top:10px;
+
+left:382px;
+
+width:100px;
+
+border-bottom: 1px double #660000;
+
+border-top: 1px double #660000;
+
+border-left:1px double #FF0033;
+
+border-right:1px double #FF0033;
+
+}
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+     <form method="get" name="classic">
+
+          <div class="box">
+
+            <h1><font color="purple">INFORMATION</font></h1>
+
+            <label>
+
+               <span>Full name *</span>
+
+               <input type="text" class="input_text" name="name" id="name"/>
+
+            </label>
+
+             <label>
+
+               <span>Email *</span>
+
+               <input type="email" class="input_text" name="email" id="email"/>
+
+            </label>
+
+             <label>
+
+                <span>Mobile Number *</span>
+
+                <input type="text" class="input_text" name="mobilenumber" id="mobilenumber"/>
+
+            </label>
+
+            <label>
+
+                <span>Address *</span>
+
+                <input type="text" class="input_text" name="address" id="address"/>
+
+                
+
+              
+
+            </label>
+            <label>
+
+                <span>City *</span>
+
+               <input type="text" class="input_text" name="city" id="city"/> 
+
+                
+
+              
+
+            </label>
+            <label>
+
+                <span>State *</span>
+
+               <input type="text" class="input_text" name="state" id="state"/>
+                </label>
+            <label>
+
+                <span>Country *</span>
+
+               <input type="text" class="input_text" name="country" id="country"/> 
+
+             </label>
+             <label>
+             <span>Category *</span>
+<select style="margin-left:30px; border-top:1px solid #262626;" name="category" onChange="updatesubcategory(this.selectedIndex)">
+<option selected>Select Super</option>
+<option value="business">Business</option>
+<option value="education">Education</option>
+<option value="funzone">Funzone</option>
+</select>
+<select style="margin-left:5px;" name="subcategory">
+</select>
+</label>
+             
+            
+            
+             
+<label>
+  <input type="submit" name="submit"  value="submit" style="color:black;width:90px;height:25px;background:blue;border-radius:20px;border:0px hidden" />
+
+       </label>
+        <?php include 'include/config.html';
+
+
+
+$name=$_GET['name'];
+$email=$_GET['email'];
+$number=$_GET['mobilenumber'];
+$address=$_GET['address'];
+$city=$_GET['city'];
+$state=$_GET['state'];
+$country=$_GET['country'];
+$category=$_GET['category'];
+$subcategory=$_GET['subcategory'];
+
+
+
+
+if(isset($_GET['submit']) && !empty($name) && !empty($email) && !empty($number) && !empty($address) && !empty($city) && !empty($state) && !empty($country) && !empty($category) && !empty($subcategory))
+{
+	
+$query="insert into information values('','$name','$email','$number','$address','$city','$state','$country','$category','$subcategory')" or die('query failed');
+$sql=mysql_query($query) or die('sql error');
+	}
+if($sql)
+{
+	echo "<script>alert('inserted')</script>";
+	echo "<script>window.location='home.html'</script>";
+}
+?>
+
+        </div>
+
+    </form>
+    <script type="text/javascript">
+
+var categorylist=document.classic.category
+var subcategorylist=document.classic.subcategory
+
+var subcategory=new Array()
+subcategory[0]=""
+subcategory[1]=["hotel|hotel", "medical|medical","electrical|electrical","furniture|furniture","extras|extras"]
+subcategory[2]=["school|school","college|college","universities|universities","privatecoahing|privatecoahing"]
+subcategory[3]=["games|games","music|music","dance|dance","art|art","extras|extras"]
+
+function updatesubcategory(selectedsubcategorygroup){
+subcategorylist.options.length=0
+if (selectedsubcategorygroup>0){
+for (i=0; i<subcategory[selectedsubcategorygroup].length; i++)
+subcategorylist.options[subcategorylist.options.length]=new Option(subcategory[selectedsubcategorygroup][i].split("|")[0], subcategory[selectedsubcategorygroup][i].split("|")[1])
+}
+}
+
+</script>
+
+</body>
+
+</html>
+
+
+
